@@ -36,6 +36,7 @@ body {
   position: fixed;
   width: 100%;
   height: 100%;
+  perspective: 1300px;
 }
 
 /* 부모영역인 wrap 안에서의 자식인 video 설정 */
@@ -64,19 +65,19 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  margin-left: -300px;
   margin-top: -400px;
-
+  margin-left: -300px;
   transform-style: preserve-3d; /* 3d 변형에 대해서 속성 적용 가능해짐 */
-  /* animation: panorama-spin linear 10s infinite; */
+   animation: panorama-spin linear 20s infinite;
 }
 
 .wrap #circle article {
-  width: 100%;
-  height: 100%;
+  /*width: 100%;*/
+  /*height: 100%;*/
   position: absolute; /* body, main, circle 중에 기준점(relative) 필요*/
   top: 0;
   left: 0;
+  backface-visibility: hidden;
 }
 
 .wrap #circle article h1 {
@@ -109,20 +110,22 @@ body {
   position: relative;
   opacity: 0.7;
   overflow: hidden;
+  cursor: pointer;
   transition: all 500ms;
 }
 
 .wrap #circle article .inner > div:hover,
 .inner > nav > div:hover {
+  background: rgba(255,255,255,0.15);
+  transform: scale(1.03);
   opacity: 1;
-  transform: scale(1.05);
 }
 
 .wrap #circle article .inner > div:hover i,
 .inner > nav > div:hover i {
   color: lightblue;
   text-shadow: 0 0 10px aqua;
-  transform: scale(1.15);
+  transform: scale(1.2);
 }
 
 .wrap #circle article .inner > div:hover h2,
@@ -132,36 +135,6 @@ body {
 }
 
 /* ======== 공통 UI 종료 ========*/
-
-/* ======== face 요소 개별 제어 시작 ======== */
-.face1 {
-  /* 사이트 네비게이션 */
-  /* display: none; */
-}
-.face2 {
-  display: none;
-}
-.face3 {
-  display: none;
-}
-.face4 {
-  display: none;
-}
-.face5 {
-  /* company slogan */
-  display: none;
-}
-.face6 {
-  display: none;
-}
-.face7 {
-  display: none;
-}
-.face8 {
-  /* weather */
-  display: none;
-}
-/* ======== face 요소 개별 제어 종료 ======== */
 
 /* ======== .face$ 내부요소 제어 시작 =========*/
 /* ======== .face1 내부요소 제어 시작 =========*/
@@ -191,16 +164,119 @@ body {
 }
 
 /* ======== .face2 내부요소 제어 시작 =========*/
-
+.face2 {
+  width: 100%;
+  height: 100%;
+}
+.face2 .inner > div > img{
+  width: 100%;
+  height: 100%;
+}
 /* ======== .face3 내부요소 제어 시작 =========*/
+@keyframes font-appear {
+  100%{
+    opacity: 100;
+  }
+}
+
+@keyframes font-disappear {
+  100%{
+    opacity: 0;
+    width: 0;
+  }
+}
+
+.face3 {
+  width: 100%;
+  height: 100%;
+}
+
+.face3 .inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.face3 .inner > div {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.face3 .inner > div:last-child {
+  margin-bottom: 0;
+}
+
+.face3 .inner > div > p {
+  font-size: 50px;
+  letter-spacing: 10px;
+}
+
+.face3 .inner > div h4{
+  opacity: 0;
+  width: 0;
+}
+
+.face3 .inner > div:hover h4{
+  animation: font-appear 1s forwards;
+  width: 100%;
+}
+
+.face3 .inner > div:hover h2{
+  animation: font-disappear forwards;
+  width: 0;
+}
+
+.Self_In_h4{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 25px;
+  letter-spacing: 5px;
+
+}
 
 /* ======== .face4 내부요소 제어 시작 =========*/
+.face4{
+  width: 100%;
+  height: 100%;
+}
 
+.face4 .inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.face4 .inner > div {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.face4 .inner > div:last-child {
+  margin-bottom: 0;
+}
+
+.face4 .inner > div > p {
+  font-size: 50px;
+  letter-spacing: 10px;
+}
 /* ======== .face5 내부요소 제어 시작 =========*/
 /* h2, .pic, img*3, .reflection */
+.face5{
+  width: 100%;
+  height: 100%;
+}
+
 #circle .face5 .inner > div h2 {
   font-size: 2.5em;
-  font-weight: boler;
+  font-weight: bolder;
   margin-block-start: 0.5em;
   margin-block-end: 0.5em;
 }
@@ -208,9 +284,8 @@ body {
 #circle .face5 .inner > div .pic {
   width: 100%;
   height: 250px;
-  background: rgba(0, 0, 0, 0.5) url("../img/ggu.png") no-repeat center
-    center/cover; /* pattern.png */
-  background-position: 0 -100px;
+  /* pattern.png */
+  background: rgba(0, 0, 0, 0.5) url("../img/bg.png") no-repeat center center/cover;
   margin-bottom: 50px;
 }
 
@@ -225,20 +300,26 @@ body {
 #circle .face5:hover .inner > div .reflection {
   top: -52%;
 }
-/* #circle .face5 .inner>div img { 
-  {Empty!!}  
+/* #circle .face5 .inner>div img {
+  {Empty!!}
   이미지를 활용해서 화면처리를 할 경우
   gif, 멀티 레이어 처리가 이미 적용된 결과물을 가져오지 않으면
   디자이너한테 다시 요청
 } */
 /* ======== .face6 내부요소 제어 시작 =========*/
-
+.face6{
+  width: 100%;
+  height: 100%;
+}
 /* ======== .face7 내부요소 제어 시작 =========*/
-
+.face7{
+  width: 100%;
+  height: 100%;
+}
 /* ======== .face8 내부요소 제어 시작 =========*/
 #circle .face8 .inner > div:nth-of-type(1) {
   width: 100%;
-  height: 400px;
+  height: 380px;
   margin-bottom: 20px;
 }
 
@@ -254,9 +335,6 @@ body {
   position: absolute;
   font-size: 80px;
   color: lightblue;
-  right: 90px;
-  transform: scale(1.05);
-  transform: all 500ms;
 }
 
 #circle .face8 .inner > div:nth-of-type(2) {
@@ -297,3 +375,42 @@ body {
 }
 
 /* ======== .face$ 내부요소 제어 종료 =========*/
+
+/* ======== face 요소 개별 제어 시작 ======== */
+/* 사이트 네비게이션 */
+.face1 {
+  transform: rotateY(0deg) translateZ(-764px);
+  /*display: none;*/
+}
+.face2 {
+  transform: rotateY(45deg) translateZ(-764px);
+  /*display: none;*/
+}
+.face3 {
+  transform: rotateY(90deg) translateZ(-764px);
+  /*display: none;*/
+}
+.face4 {
+  transform: rotateY(135deg) translateZ(-764px);
+  /*display: none;*/
+}
+/* company slogan */
+.face5 {
+  transform: rotateY(180deg) translateZ(-764px);
+  /*display: none;*/
+
+}
+.face6 {
+  transform: rotateY(225deg) translateZ(-764px);
+  /*display: none;*/
+}
+.face7 {
+  transform: rotateY(270deg) translateZ(-764px);
+  /*display: none;*/
+}
+/* weather */
+.face8 {
+  transform: rotateY(315deg) translateZ(-764px);
+  /*display: none;*/
+}
+/* ======== face 요소 개별 제어 종료 ======== */
